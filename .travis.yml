@@ -13,6 +13,9 @@ php:
 services:
   - mysql
 
+addons:
+  firefox: "latest"
+
 #
 # Cache the composer and node_modules directory to speed up the the installation of dependencies.
 #
