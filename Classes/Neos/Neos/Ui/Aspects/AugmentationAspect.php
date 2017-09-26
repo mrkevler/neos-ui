@@ -138,7 +138,8 @@ class AugmentationAspect
         $serializedNode = json_encode($this->nodeInfoHelper->renderNode($node, $this->controllerContext));
 
         $wrappedContent = $this->htmlAugmenter->addAttributes($content, $attributes, 'div');
-        $wrappedContent .= "<script>(function(){(this['@Neos.Neos.Ui:Nodes'] = this['@Neos.Neos.Ui:Nodes'] || {})['{$node->getContextPath()}'] = {$serializedNode}})()</script>";;
+        $wrappedContent .= "<script>(function(){(this['@Neos.Neos.Ui:Nodes'] = this['@Neos.Neos.Ui:Nodes'] || {})['{$node->getContextPath()}'] = {$serializedNode}})()</script>";
+        ;
         return $wrappedContent;
     }
 
@@ -202,8 +203,8 @@ class AugmentationAspect
             }
 
             if (isset($this->renderedNodes[$node->getIdentifier()]) === false) {
-              $serializedNode = json_encode($this->nodeInfoHelper->renderNode($node, $this->controllerContext));
-              $this->nonRenderedContentNodeMetadata .= "<script>(function(){(this['@Neos.Neos.Ui:Nodes'] = this['@Neos.Neos.Ui:Nodes'] || {})['{$node->getContextPath()}'] = {$serializedNode}})()</script>";
+                $serializedNode = json_encode($this->nodeInfoHelper->renderNode($node, $this->controllerContext));
+                $this->nonRenderedContentNodeMetadata .= "<script>(function(){(this['@Neos.Neos.Ui:Nodes'] = this['@Neos.Neos.Ui:Nodes'] || {})['{$node->getContextPath()}'] = {$serializedNode}})()</script>";
             }
 
             if ($node->hasChildNodes() === true) {
@@ -215,14 +216,16 @@ class AugmentationAspect
     /**
      * Clear rendered nodes helper array to prevent possible side effects.
      */
-    protected function clearRenderedNodesArray() {
+    protected function clearRenderedNodesArray()
+    {
         $this->renderedNodes = [];
     }
 
     /**
      * Clear non rendered content node metadata to prevent possible side effects.
      */
-    protected function clearNonRenderedContentNodeMetadata() {
+    protected function clearNonRenderedContentNodeMetadata()
+    {
         $this->nonRenderedContentNodeMetadata = '';
     }
 
